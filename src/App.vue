@@ -6,6 +6,7 @@
 <template>
   <div class="p-3 border-b-gray-300 border">
     <router-link to="/">Home</router-link> | 
+    <router-link to="/animation">Animation</router-link> | 
     <router-link to="/about">About</router-link>
   </div>
 
