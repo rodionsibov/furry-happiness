@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "@vue/runtime-core";
+import { computed, onMounted, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -8,6 +8,10 @@ const x = ref(0);
 const xCoordinate = (e) => {
   x.value = e.clientX;
 };
+const isShow = ref(false);
+onMounted(() => {
+  isShow.value = true;
+});
 </script>
 
 <template>
@@ -17,6 +21,7 @@ const xCoordinate = (e) => {
   <div class="p-3">x: {{ x }}</div>
   <transition name="fade">
     <div
+      v-if="isShow"
       class="p-6 bg-green-500 text-white"
       @mousemove="xCoordinate"
       :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }"
@@ -39,7 +44,7 @@ const xCoordinate = (e) => {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 2s ease;
 }
 
 .fade-enter-from,
